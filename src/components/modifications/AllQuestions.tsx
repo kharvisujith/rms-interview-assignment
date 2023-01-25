@@ -11,13 +11,27 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 import EndTestDialog from "./EndTestDialog";
+import { LinearProgress } from "@mui/material";
+const TotalNumberOfQuestion = 5;
 
 const AllQuestions = (props: any) => {
   const { openDialog, handleClose, setOpenDialog } = props;
   const [answers, setAnswers] = useState<any>([]);
+  const [progressStatus, setProgressStatus] = useState<number>(0);
+  const [answeredQuestions, setAnsweredQuestions] = useState<number>(0);
   // const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+  const handleProgressStatus = () => {
+    console.log("handePrgressstatus called");
+    const statusPercentage =
+      ((answeredQuestions + 1) * 100) / TotalNumberOfQuestion;
+    setAnsweredQuestions((prev) => prev + 1);
+    console.log("value of st is", statusPercentage);
+    setProgressStatus(statusPercentage);
+  };
 
   const handleRadioAnswerChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -32,6 +46,7 @@ const AllQuestions = (props: any) => {
         ...prev,
         { id: id, choosenAnswer: selectedOption },
       ]);
+      handleProgressStatus();
     }
   };
 
@@ -39,38 +54,28 @@ const AllQuestions = (props: any) => {
     event: React.ChangeEvent<HTMLInputElement>,
     id: any
   ) => {
-    console.log(event.target.name, event.target.checked, id);
     const existingId = answers.find((e: any) => e.id === id);
-    console.log("exisidis", existingId);
     if (existingId) {
-      console.log("inded if existingID");
       const valExist = existingId.choosenAnswer.find(
         (e: any) => e === event.target.name
       );
-      console.log("value of valExist is", valExist);
 
       if (valExist && !event.target.checked) {
-        console.log("inded valExist and !event.target.checked");
         var index = existingId.choosenAnswer.indexOf(event.target.name);
         if (index !== -1) {
           existingId.choosenAnswer.splice(index, 1);
         }
       } else {
-        console.log("in else part of valexist false");
         existingId.choosenAnswer.push(event.target.name);
       }
     } else {
-      console.log("inside main else part");
       setAnswers((prev: any) => [
         ...prev,
         { id: id, choosenAnswer: [event.target.name] },
       ]);
+      handleProgressStatus();
     }
   };
-
-  // const handleClose = () => {
-  //   setOpenDialog(false);
-  // };
 
   const handleTestSubmit = () => {
     setOpenDialog(true);
@@ -88,6 +93,12 @@ const AllQuestions = (props: any) => {
   return (
     <>
       <h1>keek</h1>
+      <Typography>{`Answered ${answeredQuestions} out of ${TotalNumberOfQuestion}`}</Typography>
+      <LinearProgress
+        value={progressStatus}
+        variant={"determinate"}
+        color={"primary"}
+      />
       {jsQuestions.map((question, index) => {
         switch (question.selectionType) {
           case "radio":
@@ -112,9 +123,22 @@ const AllQuestions = (props: any) => {
             return null;
         }
       })}
+
       <Box>
-        <Button variant="contained" onClick={() => setOpenDialog(true)}>
-          Submit
+        <Typography>{`Answered ${answeredQuestions} out of ${TotalNumberOfQuestion}`}</Typography>
+        <LinearProgress
+          value={progressStatus}
+          variant={"determinate"}
+          color={"primary"}
+        />
+      </Box>
+      <Box style={{ display: "flex", justifyContent: "center" }}>
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => setOpenDialog(true)}
+        >
+          Submit Test
         </Button>
       </Box>
       <EndTestDialog
@@ -122,6 +146,7 @@ const AllQuestions = (props: any) => {
         handleClose={handleClose}
         setOpenDialog={setOpenDialog}
       />
+
       {/* <Box>
         <Dialog
           open={openDialog}
