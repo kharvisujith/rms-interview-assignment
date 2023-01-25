@@ -1,24 +1,23 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { ILocalStorages } from '../../../utils/Models';
-import { useEffect } from 'react';
-import { getLocalStorage, getLocalStorageLength } from '../helper';
-import Avatar from '@mui/material/Avatar';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+// import { ILocalStorages } from '../../../utils/Models';
+import { useEffect } from "react";
+import { getLocalStorage, getLocalStorageLength } from "../helper";
+import Avatar from "@mui/material/Avatar";
 
 interface IQuizHeader {
-  headerTitle: string
+  headerTitle: string;
 }
 
-export function QuizHeaderComponent(props : IQuizHeader) {
-
-  const {headerTitle} = props;
+export function QuizHeaderComponent(props: IQuizHeader) {
+  const { headerTitle } = props;
 
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -33,13 +32,12 @@ export function QuizHeaderComponent(props : IQuizHeader) {
   };
 
   useEffect(() => {
-    if(getLocalStorageLength() > 0) {
+    if (getLocalStorageLength() > 0) {
       setAuth(true);
     } else {
       setAuth(false);
     }
-  }, [getLocalStorageLength()])
-  
+  }, [getLocalStorageLength()]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -67,19 +65,22 @@ export function QuizHeaderComponent(props : IQuizHeader) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Avatar alt={getLocalStorage('name')} src={getLocalStorage('profilePic')} />
+                <Avatar
+                  alt={getLocalStorage("name")}
+                  src={getLocalStorage("profilePic")}
+                />
               </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}

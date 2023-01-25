@@ -1,4 +1,4 @@
-import { jsQuestions } from "../../utils/quiz/utils/questions";
+import { jsQuestions } from "../../questions/questions";
 import CheckboxComponent from "./CheckboxComponent";
 import RadioComponent from "./RadioComponent";
 import CodingComponent from "./CodingComponent";
@@ -82,17 +82,11 @@ const AllQuestions = (props: any) => {
     console.log("The submited answer set is", answers);
     //setConfirmSubmit(true);
   };
-  // const endTest = () => {
-  //   setOpenDialog(false);
-  //   console.log("test ended");
-  //   console.log("the final answer set is", answers);
-  // };
 
   console.log("value of answers is", answers);
 
   return (
     <>
-      <h1>keek</h1>
       <Typography>{`Answered ${answeredQuestions} out of ${TotalNumberOfQuestion}`}</Typography>
       <LinearProgress
         value={progressStatus}

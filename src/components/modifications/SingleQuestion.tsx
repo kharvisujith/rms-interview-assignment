@@ -1,10 +1,10 @@
 import { Box, Button, LinearProgress, Typography } from "@mui/material";
 import { useState } from "react";
 import EndTestDialog from "./EndTestDialog";
-import { jsQuestions } from "../../utils/quiz/utils/questions";
 import CheckboxComponent from "./CheckboxComponent";
 import CodingComponent from "./CodingComponent";
 import RadioComponent from "./RadioComponent";
+import { jsQuestions } from "../../questions/questions";
 
 const TotalNumberOfQuestion = 5;
 

@@ -15,13 +15,13 @@ import Toolbar from "@mui/material/Toolbar";
 import ReactModal from "react-modal";
 import React, { useContext, useState } from "react";
 import "./common.css";
-import QuizContentScreen from "../../components/QuizApp/QuizContentScreen";
-import { questionGeneraterWithJSONFormat } from "../../utils/quiz/utils";
-import { jsQuestions } from "../../utils/quiz/utils/questions";
-import { componentProps, templateList, uiJson } from "../../utils";
-import { GET_ALL_COMPONENTS } from "../../utils/componentConfigs";
-import QuestionSlider from "../../components/QuizApp/QuestionSlider";
-import QuestionListView from "../../components/QuizApp/QuestionListView";
+// import QuizContentScreen from "../../components/QuizApp/QuizContentScreen";
+// import { questionGeneraterWithJSONFormat } from "../../utils/quiz/utils";
+// import { jsQuestions } from "../../utils/quiz/utils/questions";
+// import { componentProps, templateList, uiJson } from "../../utils";
+// import { GET_ALL_COMPONENTS } from "../../utils/componentConfigs";
+// import QuestionSlider from "../../components/QuizApp/QuestionSlider";
+// import QuestionListView from "../../components/QuizApp/QuestionListView";
 import { AuthContext } from "../../context/AuthContectProvider";
 import AllQuestions from "../../components/modifications/AllQuestions";
 import SingleQuestion from "../../components/modifications/SingleQuestion";
@@ -59,9 +59,6 @@ const StartQuiz = () => {
     createData("Question Not Answered", 0),
   ];
 
-  // console.log(questionGeneraterWithJSONFormat(jsQuestions));
-  const componentsData = questionGeneraterWithJSONFormat(jsQuestions);
-
   return (
     <Box className="main-layout-wrap">
       <AppBar position="static">
@@ -87,27 +84,11 @@ const StartQuiz = () => {
               setOpenDialog={setOpenDialog}
             />
           ) : null}
-
-          {modalContent && modalContent === "slideView" ? (
-            <QuestionSlider
-              getComponentList={GET_ALL_COMPONENTS}
-              layoutConfigs={templateList}
-              componentsData={componentsData}
-            />
-          ) : null}
-
           {modalContent && modalContent === "listView" ? (
             <AllQuestions
               openDialog={openDialog}
               handleClose={handleClose}
               setOpenDialog={setOpenDialog}
-            />
-          ) : null}
-          {modalContent && modalContent === "listView" ? (
-            <QuestionListView
-              getComponentList={GET_ALL_COMPONENTS}
-              layoutConfigs={templateList}
-              componentsData={componentsData}
             />
           ) : null}
 
@@ -156,15 +137,6 @@ const StartQuiz = () => {
             Start in List View Test
           </Button>
         </div>
-
-        {/* <Button
-          className="quiz-end-btn"
-          variant="contained"
-          color="error"
-          onClick={endTestButtonHandler}
-        >
-          End Test
-        </Button> */}
       </div>
     </Box>
   );

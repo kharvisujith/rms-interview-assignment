@@ -24,7 +24,6 @@ const RoutesPage = () => {
     // <BrowserRouter>
     <Routes>
       <Route path="/" element={<StartQuiz />} />
-      {/* <Route path="/started" element={<AllQuestions />} /> */}
       <Route path="test_submitted" element={<TestCompleted />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
