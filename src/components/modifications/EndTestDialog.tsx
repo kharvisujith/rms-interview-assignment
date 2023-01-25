@@ -7,13 +7,17 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const EndTestDialog = (props: any) => {
   const { openDialog, handleClose, setOpenDialog } = props;
 
+  const navigate = useNavigate();
+
   const endTest = () => {
     setOpenDialog(false);
     console.log("test ended");
+    navigate("/test_submitted");
     // console.log("the final answer set is", answers);
   };
 

@@ -4,6 +4,7 @@ import Canvas from "./uiEngine";
 import { GET_ALL_COMPONENTS } from "./utils/componentConfigs";
 import { AuthContext } from "./context/AuthContectProvider";
 import StartQuiz from "./screens/quiz/StartQuiz";
+import RoutesPage from "./routes/RoutesPage";
 
 function App() {
   const authContext = useContext(AuthContext);
@@ -22,8 +23,10 @@ function App() {
           authContext.isAuthenticated
         )} */}
         {/* <Canvas componentProps={componentProps} getComponent={GET_ALL_COMPONENTS} layoutConfig={uiJson} /> */}
-        <StartQuiz />
+        {/* <StartQuiz /> */}
         {/* <button onClick={authContext.logout}>logout</button> */}
+
+        <RoutesPage />
       </>
     );
   }

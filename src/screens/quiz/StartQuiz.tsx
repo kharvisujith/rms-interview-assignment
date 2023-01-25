@@ -157,14 +157,14 @@ const StartQuiz = () => {
           </Button>
         </div>
 
-        <Button
+        {/* <Button
           className="quiz-end-btn"
           variant="contained"
           color="error"
           onClick={endTestButtonHandler}
         >
           End Test
-        </Button>
+        </Button> */}
       </div>
     </Box>
   );
